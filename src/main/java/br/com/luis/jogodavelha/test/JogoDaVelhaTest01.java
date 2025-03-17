@@ -106,10 +106,12 @@ public class JogoDaVelhaTest01 {
     }
 
     private static char simboloJogador() {
+        System.out.println("----------------------------------------");
         System.out.println("O primeiro símbolo será sorteado aleatoriamente (X ou O)");
         char simbolo = ThreadLocalRandom.current().nextInt(ZERO, DOIS) == UM ? 'X' : 'O';
         System.out.printf("O símbolo do jogador 1 é o %c%n", simbolo);
         System.out.printf("O símbolo do jogador 2 é o %c%n", simbolo == 'X' ? 'O' : 'X');
+        System.out.println("----------------------------------------");
 
         return simbolo;
     }
@@ -122,7 +124,10 @@ public class JogoDaVelhaTest01 {
     }
 
     private static void imprime() {
+        int pos = 1;
+        System.out.println("   1  2  3");
         for (char[] simbolos : tabuleiro) {
+            System.out.printf("%d ", pos++);
             for (char simbolo : simbolos) {
                 System.out.printf("|%c|", simbolo);
             }
