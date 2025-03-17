@@ -37,15 +37,15 @@ public class JogoDaVelhaTest01 {
         int coluna;
         int linha;
         try {
-            System.out.printf("Insira a posição da linha do %c (1 até 3)%n", simboloJogador);
+            System.out.println("Insira a posição da linha (1 até 3) onde será colocado o símbolo");
             linha = sc.nextInt() - UM;
 
-            System.out.printf("Insira a posição da coluna do %c (1 até 3)%n", simboloJogador);
+            System.out.println("Insira a posição da coluna (1 até 3) onde será colocado o símbolo");
             coluna = sc.nextInt() - UM;
 
             jogadaCerta = adiciona(linha, coluna, simboloJogador);
         } catch (Exception e) {
-            System.out.println("Insira uma posição válida.");
+            System.out.println("Insira uma posição que seja um número de 1 a 3.");
             sc.nextLine();
         }
         return jogadaCerta;
@@ -53,12 +53,12 @@ public class JogoDaVelhaTest01 {
 
     private static boolean fimDoJogo(int jogador, char simboloJogador) {
         if (vencedorLinhaReta(simboloJogador) || vencedorColunaReta(simboloJogador) || vencedorDiagonal(simboloJogador)) {
-            System.out.printf("O jogador %d ganhou%n", jogador);
-            System.out.println("Fim de jogo!!!!!!!!!");
+            System.out.printf("O jogador %d venceu a partida!%n", jogador);
+            System.out.println("Fim de jogo!");
             return true;
         } else if (empate()) {
-            System.out.println("O jogo deu velha!!!");
-            System.out.println("Fim de jogo!!!!!!!!!");
+            System.out.println("O jogo deu empate!");
+            System.out.println("Fim de jogo!");
             return true;
         }
         return false;
@@ -100,17 +100,19 @@ public class JogoDaVelhaTest01 {
             return true;
         }
         System.out.println("----------------------------------------");
-        System.out.println("Posição já preenchida. Tente novamente.");
+        System.out.printf("A posição selecionada já está marcada com simbolo '%c'%n", tabuleiro[linha][coluna]);
+        imprime();
+        System.out.println("Entre com outra linha ou coluna para continuar o jogo");
         System.out.println("----------------------------------------");
         return false;
     }
 
     private static char simboloJogador() {
         System.out.println("----------------------------------------");
-        System.out.println("O primeiro símbolo será sorteado aleatoriamente (X ou O)");
+        System.out.println("O simbolos dos jogadores serão aleatórios (X ou O)");
         char simbolo = ThreadLocalRandom.current().nextInt(ZERO, DOIS) == UM ? 'X' : 'O';
-        System.out.printf("O símbolo do jogador 1 é o %c%n", simbolo);
-        System.out.printf("O símbolo do jogador 2 é o %c%n", simbolo == 'X' ? 'O' : 'X');
+        System.out.printf("O símbolo escolhido para o jogador 1 é o %c%n", simbolo);
+        System.out.printf("O símbolo escolhido para o jogador 2 é o %c%n", simbolo == 'X' ? 'O' : 'X');
         System.out.println("----------------------------------------");
 
         return simbolo;
